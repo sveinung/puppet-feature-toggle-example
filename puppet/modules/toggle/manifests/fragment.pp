@@ -8,7 +8,7 @@ define toggle::fragment($target, $setting=false) {
     require => Toggle[$target],
   }
 
-  exec { 'add_fragment':
+  exec { "add_${name}":
     command   => "cat ${fragment_file} >> /etc/${target}",
     path      => ['/bin'],
     subscribe => File[$fragment_file],

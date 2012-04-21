@@ -11,8 +11,8 @@ define toggle {
   }
 
   file { "/etc/${name}":
-    ensure => file,
-    purge  => true,
+    ensure  => file,
+    content => "",
   }
 
 }
