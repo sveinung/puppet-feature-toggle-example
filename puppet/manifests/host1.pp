@@ -1,5 +1,3 @@
-include hosts
-
 import 'default.pp'
 
 $feature_toggle_file = 'toggle_example'
