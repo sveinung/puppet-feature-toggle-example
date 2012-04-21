@@ -11,3 +11,8 @@ toggle::fragment { 'one':
   setting => true,
 }
 
+toggle::fragment { 'two':
+  target  => $feature_toggle_file,
+  setting => true,
+}
+
