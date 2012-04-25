@@ -1,19 +1,30 @@
 define toggle {
 
+  $config_file = "/etc/${name}"
+  $fragment_dir = "/tmp/${name}.d/"
+
   File {
     owner => root,
     group => root,
-    mode  => 644,
+    mode  => '0644',
   }
 
-  file { "/tmp/${name}.d/":
-    ensure => directory,
+  file { $fragment_dir:
+    ensure  => directory,
+    purge   => true,
+    recurse => true,
   }
 
-  file { "/etc/${name}":
+  exec { 'rebuild-conf':
+    command     => "cat ${fragment_dir}/* > ${config_file}",
+    path        => ['/bin'],
+    refreshonly => true,
+    subscribe   => File[$fragment_dir],
+  }
+
+  file { $config_file:
     ensure  => file,
-    content => "",
+    require => Exec['rebuild-conf'],
   }
-
 }
 

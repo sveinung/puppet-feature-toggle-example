@@ -5,13 +5,6 @@ define toggle::fragment($target, $setting=false) {
   file { $fragment_file:
     ensure  => present,
     content => template('toggle/fragment.yml.erb'),
-    require => Toggle[$target],
+    notify  => Exec['rebuild-conf'],
   }
-
-  exec { "add_${name}":
-    command   => "cat ${fragment_file} >> /etc/${target}",
-    path      => ['/bin'],
-    subscribe => File[$fragment_file],
-  }
-
 }
