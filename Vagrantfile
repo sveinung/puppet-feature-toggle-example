@@ -11,10 +11,11 @@ Vagrant::Config.run do |config|
 
     host_config.vm.network :hostonly, "10.10.0.101"
     host_config.vm.forward_port 8080, 8080
+    host_config.vm.host_name = "host1.lan"
 
     host_config.vm.provision :puppet do |puppet|
       puppet.manifests_path = "puppet/manifests"
-      puppet.manifest_file = "host1.pp"
+      puppet.manifest_file = "site.pp"
       puppet.module_path = "puppet/modules"
     end
   end
@@ -25,10 +26,11 @@ Vagrant::Config.run do |config|
 
     host_config.vm.network :hostonly, "10.10.0.102"
     host_config.vm.forward_port 8080, 8081
+    host_config.vm.host_name = "host2.lan"
 
     host_config.vm.provision :puppet do |puppet|
       puppet.manifests_path = "puppet/manifests"
-      puppet.manifest_file = "host2.pp"
+      puppet.manifest_file = "site.pp"
       puppet.module_path = "puppet/modules"
     end
   end
