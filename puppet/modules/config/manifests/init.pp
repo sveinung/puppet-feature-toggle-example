@@ -1,4 +1,4 @@
-define toggle {
+define config {
 
   $config_file = "/etc/${name}"
   $fragment_dir = "/tmp/${name}.d/"
