@@ -1,12 +1,20 @@
 $: << 'app/routes'
 
+require 'sinatra'
+require 'sinatra/config_file'
+
 require 'application'
 
-map "/one" do
-  run FeatureOne
+config_file '/etc/toggle_example'
+
+if settings.one
+  map "/one" do
+    run FeatureOne
+  end
 end
 
-map "/two" do
-  run FeatureTwo
+if settings.two
+  map "/two" do
+    run FeatureTwo
+  end
 end
-
