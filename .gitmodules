@@ -1,3 +1,6 @@
 [submodule "puppet/modules/thin"]
 	path = puppet/modules/thin
 	url = git@github.com:sveinung/puppet-module-thin.git
+[submodule "puppet/modules/config"]
+	path = puppet/modules/config
+	url = git@github.com:sveinung/puppet-module-config.git
