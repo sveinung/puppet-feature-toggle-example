@@ -1,4 +1,4 @@
-define config {
+define config($notify_on_rebuild=undef) {
 
   $config_file = "/etc/${name}"
   $fragment_dir = "/tmp/${name}.d/"
@@ -20,6 +20,7 @@ define config {
     path        => ['/bin'],
     refreshonly => true,
     subscribe   => File[$fragment_dir],
+    notify      => $notify_on_rebuild,
   }
 
   file { $config_file:

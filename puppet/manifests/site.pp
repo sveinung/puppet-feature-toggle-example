@@ -9,7 +9,9 @@ node base {
     port   => 8080,
   }
 
-  config { $feature_toggle_file: }
+  config { $feature_toggle_file:
+    notify_on_rebuild => Thin::App['example'],
+  }
 }
 
 node 'host1.lan' inherits base {
